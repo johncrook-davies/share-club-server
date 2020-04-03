@@ -17,8 +17,8 @@ RSpec.describe Stock, type: :model do
         expect(ex.stocks).to contain_exactly(stock)
     end
     
-    it "has a custom update method" do
-        expect(stock.update).to eq("This works")
+    it "has method to update market data" do
+        expect(stock.get_latset_info).to eq(stock)
     end
     
 end
