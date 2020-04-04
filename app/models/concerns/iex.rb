@@ -20,6 +20,33 @@ module Iex
     end
     
     included do
+        
+        def get_only_required_fields(props)
+            # For a given json and field mapping, returns
+            # a hash containing only the required fields
+            payload = props[:json]
+            field_map = props[:mapping]
+            # Turn json response to hash if it is
+            begin
+                hash = JSON.parse(payload)
+            rescue
+                hash = payload
+            end
+            # Remove all attributes of response that are
+            # not Stock attributes
+            filtered_object = hash.select{ | k, v | 
+                field_map.keys.include? k
+                }
+            # Create an empty hash
+            renamed_filtered_object = {}
+            # Fill empty hash with response values
+            # labelled using mapping
+            filtered_object.each do | k, v |
+                renamed_filtered_object[field_map[k]] = v
+            end
+            return renamed_filtered_object
+        end
+        
         def get_info_for(props)
             # Gets price and simple stats for investment
             # Inputs:   Hash (:type, :name)
@@ -55,7 +82,14 @@ module Iex
             # Inputs: Hash {:region(ISO 3166-1 alpha-2 country code)}
             # Outputs Json [{<stock>},{<stock>}, ...]
             region=props[:region]
-            return send_request("#{MARKET_DATA_API_URL}/#{VERSION}/ref-data/region/#{region}/symbols?token=#{TOKEN}")
+            ex=props[:exchange]
+            if region
+                return send_request("#{MARKET_DATA_API_URL}/#{VERSION}/ref-data/region/#{region}/symbols?token=#{TOKEN}")
+            elsif ex
+                return send_request("#{MARKET_DATA_API_URL}/#{VERSION}/ref-data/exchange/#{ex}/symbols?token=#{TOKEN}")
+            else
+                raise StandardError.new "Invalid props"
+            end
         end
     
         def get_indices()

@@ -12,4 +12,10 @@ RSpec.describe Exchange, type: :model do
         expect(Exchange.find_by(id: ex.id)).to be
     end
     
+    it "..." do
+        thing = ex.get_stock_list
+        puts thing
+        expect(thing).to eq(3)
+    end
+    
 end

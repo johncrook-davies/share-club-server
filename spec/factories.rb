@@ -4,7 +4,7 @@ FactoryBot.define do
     
     factory :exchange do
         sequence(:id) { | n | n } 
-        symbol { 'FTSE' } #('a'..'z').to_a.shuffle.join
+        symbol { 'LON' } #('a'..'z').to_a.shuffle.join
         name { 'London index' }
         region { 'gb' }
         mic {' FTSEGB' }
