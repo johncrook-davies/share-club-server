@@ -2,20 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Exchange, type: :model do
     
+    # Definee the exchange
     let(:ex) { build(:exchange) }
-    
     before do
         ex.save
+        # Stub methods in module Iex
+        allow(ex).to receive(:get_stocks).with(anything()) { returned_get_stocks }
     end
     
     it "creates for valid input" do
         expect(Exchange.find_by(id: ex.id)).to be
     end
     
-    it "..." do
-        thing = ex.get_stock_list
-        puts thing
-        expect(thing).to eq(3)
+    it "populates stocks when calling get_stock_list" do
+        actual_number_returned = ex.get_stock_list.length
+        exp_number_returned = JSON.parse(returned_get_stocks).length
+        expect(exp_number_returned).to eq(actual_number_returned)
     end
     
 end
