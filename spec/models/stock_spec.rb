@@ -6,6 +6,8 @@ RSpec.describe Stock, type: :model do
     
     before do
         stock.save
+        # Stub methods in module Iex
+        allow(stock).to receive(:get_info_for).with(anything()) { returned_get_info_for }
     end
     
     it "creates for valid input" do
@@ -18,7 +20,10 @@ RSpec.describe Stock, type: :model do
     end
     
     it "has method to update market data" do
-        expect(stock.get_latset_info).to eq(stock)
+        # Returns true
+        expect(stock.get_latset_info).to eq(true)
+        # Price is updated
+        expect(stock.latest_price).to eq(JSON.parse(returned_get_info_for)['latestPrice'])
     end
     
 end

@@ -12,14 +12,12 @@ class Stock < ApplicationRecord
             type: 'stock', 
             name: symbol
                 )
-        puts payload
         updated_data = get_only_required_fields(json: payload, mapping: {
             'symbol' => :symbol,
             'latestPrice' => :latest_price,
             'companyName' => :name
             })
-        update(updated_data)
-        return self
+        return update(updated_data)
     end
     
     # Class methods
