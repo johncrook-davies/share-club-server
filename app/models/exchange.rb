@@ -6,12 +6,6 @@ class Exchange < ApplicationRecord
         # Initialisation methods
     end
     
-    def get_stocks(props)
-        # get_stocks method added to exchange so
-        # that method can be stubbed in specs
-        super
-    end
-    
     def get_stock_list
         # Requests list of stocks that are members
         # of exchange from market data server and
