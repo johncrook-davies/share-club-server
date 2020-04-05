@@ -6,7 +6,7 @@ class Stock < ApplicationRecord
         # Initialisation methods
     end
     
-    def get_latset_info()
+    def get_latest_info()
         # GET request to market data server
         payload = get_info_for(
             type: 'stock', 
@@ -23,6 +23,12 @@ class Stock < ApplicationRecord
     # Class methods
     class << self
         # Class methods here
+        def get_latest_info_all()
+            all.each do | s |
+                s.get_latest_info
+            end
+            return all
+        end
     end
     
     # Private instance methods

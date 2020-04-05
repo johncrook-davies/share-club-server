@@ -11,14 +11,14 @@ FactoryBot.define do
         exchange_suffix { '-LON' }
     end
     
-    factory :stock do
-        sequence(:id) { | n | n } 
-        symbol { 'AAPL' }
-        name { 'London index' }
-        latest_price { 
+    factory :stock do | u |
+        u.sequence(:id) { | n | n } 
+        u.symbol { ('A'..'Z').to_a[prng.rand(25)] * 4 }
+        u.name { ('A'..'z').to_a[prng.rand(25)] * 32 }
+        u.latest_price { 
             prng.rand(0.5..300.0).round(2) 
             }
-        exchange
+        u.exchange
     end
     
 end
