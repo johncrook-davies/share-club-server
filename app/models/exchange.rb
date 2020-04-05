@@ -31,7 +31,7 @@ class Exchange < ApplicationRecord
             filtered_ar << filtered_stk
         end
         if props[:limit] 
-            number_to_delete = filtered_ar.length - props[:limit]
+            number_to_delete = filtered_ar.length - props[:limit].to_i
             number_to_delete.times do
                 filtered_ar.delete_at(rand(filtered_ar.length))
             end

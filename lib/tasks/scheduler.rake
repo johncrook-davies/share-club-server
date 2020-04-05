@@ -4,7 +4,7 @@ namespace :scheduler do
     task :index, [:name, :limit] => :environment do |t, args|
         name = args[:name]
         limit = args[:limit] || false
-        Exchange.find_by(symbol: name).get_stock_list(limit: false)
+        Exchange.find_by(symbol: name).get_stock_list(limit: limit)
     end
     
     desc "Updated prices"
