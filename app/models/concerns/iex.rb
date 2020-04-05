@@ -3,9 +3,9 @@ module Iex
     require 'net/http'
     extend ActiveSupport::Concern
     
-    TOKEN='Tpk_fc7f52f381014180aca34c3beea639b9'
+    TOKEN=ENV['API_ENV'] ? ENV['API_TOKEN_DEV'] : ENV['API_TOKEN_PROD']
     VERSION='stable'
-    MARKET_DATA_API_URL='https://sandbox.iexapis.com'
+    MARKET_DATA_API_URL=ENV['API_ENV'] ? ENV['API_URL_DEV'] : ENV['API_URL_PROD']
 
     def send_request(url)
         # Send a request 
