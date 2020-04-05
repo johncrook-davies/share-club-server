@@ -6,4 +6,9 @@ namespace :market_data do
         Exchange.find_by(symbol: name).get_stock_list
     end
     
+    desc "Updated prices"
+    task :update => :environment do
+        Stock.get_latest_info_all
+    end
+    
 end
