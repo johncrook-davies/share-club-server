@@ -6,7 +6,7 @@ class Exchange < ApplicationRecord
         # Initialisation methods
     end
     
-    def get_stock_list
+    def get_stock_list(props = {limit: false})
         # Requests list of stocks that are members
         # of exchange from market data server and
         # creates relevant stocks
@@ -29,6 +29,12 @@ class Exchange < ApplicationRecord
             })
             filtered_stk[:symbol] = filtered_stk[:symbol].gsub(/-.+/,'')
             filtered_ar << filtered_stk
+        end
+        if props[:limit] 
+            number_to_delete = filtered_ar.length - props[:limit]
+            number_to_delete.times do
+                filtered_ar.delete_at(rand(filtered_ar.length))
+            end
         end
         # Create new, update existing and delete old
         exist_stks = stocks.all || []
