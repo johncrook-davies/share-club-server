@@ -1,7 +1,7 @@
 require File.expand_path("../../../support/shared_contexts/rake.rb", __FILE__)
 require "rails_helper"
 
-describe "market_data:index", type: :task do
+describe "scheduler:index", type: :task do
     include_context "rake"
     
     # Definee the exchange
@@ -21,7 +21,7 @@ describe "market_data:index", type: :task do
     end
 end
 
-describe "market_data:update", type: :task do
+describe "scheduler:update", type: :task do
     include_context "rake"
     
     # Definee the exchange

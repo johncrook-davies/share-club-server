@@ -1,4 +1,4 @@
-namespace :market_data do
+namespace :scheduler do
     
     desc "Get updated indices"
     task :index, [:name] => :environment do |t, args|
