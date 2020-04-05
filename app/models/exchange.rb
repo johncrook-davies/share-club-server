@@ -28,9 +28,27 @@ class Exchange < ApplicationRecord
                 'name' => :name
             })
             filtered_stk[:symbol] = filtered_stk[:symbol].gsub(/-.+/,'')
-            model_obj = stocks.create(filtered_stk)
-            filtered_ar << model_obj
+            filtered_ar << filtered_stk
         end
+        # Create new, update existing and delete old
+        exist_stks = stocks.all || []
+        exist_stk_symbols = exist_stks.pluck(:symbol)
+        filtered_ar.each do | stk |
+            if exist_stk_symbols.include? stk[:symbol]
+                # Replace existing stocks
+                stocks.find_by(symbol: stk[:symbol]).update(stk)
+            else
+                # Create new stocks
+                stocks.create(stk)
+            end
+        end
+        # Remove old stocks
+        exist_stk_symbols.each do | exist_symbol |
+            if !(filtered_ar.any? {| stk | stk[:symbol] == exist_symbol})
+                stocks.find_by(symbol: exist_symbol).destroy
+            end
+        end
+        #filtered_ar = Stock.create(filtered_ar)
         return filtered_ar
     end
     
