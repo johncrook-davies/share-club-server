@@ -1,9 +1,10 @@
 namespace :scheduler do
     
     desc "Get updated indices"
-    task :index, [:name] => :environment do |t, args|
+    task :index, [:name, :limit] => :environment do |t, args|
         name = args[:name]
-        Exchange.find_by(symbol: name).get_stock_list
+        limit = args[:limit] || false
+        Exchange.find_by(symbol: name).get_stock_list(limit: false)
     end
     
     desc "Updated prices"
