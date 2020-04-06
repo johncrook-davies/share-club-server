@@ -3,9 +3,9 @@ module Iex
     require 'net/http'
     extend ActiveSupport::Concern
     
-    TOKEN=ENV['API_ENV'] ? ENV['API_TOKEN_DEV'] : ENV['API_TOKEN_PROD']
+    TOKEN=(ENV['API_ENV'] != 'production') ? ENV['API_TOKEN_DEV'] : ENV['API_TOKEN_PROD']
     VERSION='stable'
-    MARKET_DATA_API_URL=ENV['API_ENV'] ? ENV['API_URL_DEV'] : ENV['API_URL_PROD']
+    MARKET_DATA_API_URL=(ENV['API_ENV'] != 'production') ? ENV['API_URL_DEV'] : ENV['API_URL_PROD']
 
     def send_request(url)
         # Send a request 
