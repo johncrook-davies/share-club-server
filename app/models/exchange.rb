@@ -20,14 +20,15 @@ class Exchange < ApplicationRecord
         # Declare empty array
         filtered_ar = []
         # For each stock in returned market data get
-        # get the fields needed to create a stock, 
-        # market suffic from symbol and create a stock
+        # get the fields needed to create a stock and
+        # create a stock
         ar.each do | stk |
             filtered_stk = get_only_required_fields(json: stk, mapping: {
                 'symbol' => :symbol,
                 'name' => :name
             })
-            filtered_stk[:symbol] = filtered_stk[:symbol].gsub(/-.+/,'')
+            # Uncomment to remove market suffix
+            #filtered_stk[:symbol] = filtered_stk[:symbol].gsub(/-.+/,'')
             filtered_ar << filtered_stk
         end
         if props[:limit] 
