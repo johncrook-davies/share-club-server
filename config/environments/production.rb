@@ -104,4 +104,6 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
     # Configure ActionCable's production URI
     config.web_socket_server_url = "wss://warm-mesa-02274.herokuapp.com/cable" 
+    # Allow action cable requests from any source
+    config.action_cable.disable_request_forgery_protection = true
 end
