@@ -9,6 +9,9 @@ and then killing the process with:
 ```zsh
     kill -9 <PID>
 ```
+### Prices are currently updated using heroku scheduler
+Currently prices are updated using heroku scheduler. This is not a long term solution as a rake task must be executed each time, the scheduler is always active (which can be countered by adding a time dependancy to the rake task) and tasks can only be run every 5 minutes.
+
 ### Real time streaming with websockets
 * Redis needs to be installed on the host
 * The redis gem has been added to the gemfile

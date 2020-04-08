@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
     include Iex
     belongs_to :exchange
+    after_commit :broadcast
     
     def init
         # Initialisation methods
@@ -33,5 +34,8 @@ class Stock < ApplicationRecord
     
     # Private instance methods
     private
+        def broadcast
+            ActionCable.server.broadcast "stocks:#{self.symbol}", stock: self
+        end
         
 end
