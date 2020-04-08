@@ -2,7 +2,7 @@ class StocksChannel < ApplicationCable::Channel
     
     def subscribed
         stock = Stock.find_by(symbol: params[:id])
-        stream_for stock
+        stream_for stock.symbol
     end
     
     def unsubscribed
