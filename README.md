@@ -46,3 +46,7 @@ head :ok
         identifier: JSON.stringify({channel:"<ChanelNameChanel>"})
     }))
 ```
+* The redis addon for heroku is used. Configure heroku for this with the following command and add the url to `config/cable.yml`.
+```zsh
+    heroku config --app warm-mesa-02274 | grep REDISTOGO_URL
+```
