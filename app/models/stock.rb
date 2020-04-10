@@ -1,3 +1,4 @@
+require 'updater'
 class Stock < ApplicationRecord
     include Iex
     belongs_to :exchange
@@ -19,6 +20,16 @@ class Stock < ApplicationRecord
             'companyName' => :name
             })
         return update(updated_data)
+    end
+    
+    def start_updating
+        puts "Stream has started"
+        @updator = Updater.new for: self
+    end
+    
+    def stop_updating
+        puts "Stream has stopped"
+        @updator.stop
     end
     
     # Class methods
