@@ -2,6 +2,7 @@ class CreateIndices < ActiveRecord::Migration[6.0]
     def change
         create_table :indices do |t|
             t.string        :name
+            t.string        :symbol
             t.decimal       :latest_price
             t.belongs_to    :exchange
             t.timestamps

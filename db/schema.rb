@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_191722) do
 
   create_table "indices", force: :cascade do |t|
     t.string "name"
+    t.string "symbol"
     t.decimal "latest_price"
     t.bigint "exchange_id"
     t.datetime "created_at", precision: 6, null: false

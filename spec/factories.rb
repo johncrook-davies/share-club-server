@@ -45,6 +45,7 @@ FactoryBot.define do
     
     factory :index do
         sequence(:id) { | n | n } 
+        symbol { gen_rand_str(4) }
         name { 
             gen_rand_str(4)+" "+gen_rand_str(3, numbers: true)
         }
