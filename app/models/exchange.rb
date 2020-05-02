@@ -48,9 +48,13 @@ class Exchange < ApplicationRecord
             else
                 # Create new stocks
                 ## If unknown index does not exist then create it
+                old_logger = ActiveRecord::Base.logger
+                ActiveRecord::Base.logger = nil
                 unless index = indices.find_by(name: 'Unknown')
                     index = indices.create(name: 'Unknown')
                 end
+                ActiveRecord::Base.logger = old_logger
+                stk[:exchange] = self
                 index.stocks.create(stk)
             end
         end
