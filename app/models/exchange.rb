@@ -47,7 +47,11 @@ class Exchange < ApplicationRecord
                 stocks.find_by(symbol: stk[:symbol]).update(stk)
             else
                 # Create new stocks
-                stocks.create(stk)
+                ## If unknown index does not exist then create it
+                unless index = indices.find_by(name: 'Unknown')
+                    index = indices.create(name: 'Unknown')
+                end
+                index.stocks.create(stk)
             end
         end
         # Remove old stocks
