@@ -92,8 +92,8 @@ module Iex
             end
         end
     
-        def get_indices()
-            # Gets list of stocks for a region
+        def get_exchanges()
+            # Gets list of exchanges for a region
             # Inputs: Nil
             # Outputs Json {currencies: [<currency>], pairs: [<exchange rate>]}
             return send_request("#{MARKET_DATA_API_URL}/#{VERSION}/ref-data/exchanges?token=#{TOKEN}")

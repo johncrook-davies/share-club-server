@@ -14,6 +14,8 @@ RSpec.describe Stock, type: :model do
         stock_two.save
         # Stub methods in module Iex
         allow_any_instance_of(Stock).to receive(:get_info_for).with(anything()) { returned_get_info_for }
+        # Stub methods in module AlphaVantage
+        allow_any_instance_of(Index).to receive(:get_index_price).with(anything()) { returned_get_index_price }
     end
     
     it "creates for valid input" do

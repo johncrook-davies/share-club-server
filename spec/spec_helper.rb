@@ -20,7 +20,7 @@ RSpec.configure do |config|
   # assertions if you prefer.
       
     # Include support modules
-    config.include ApiResponseHelper, :type => :model
+    config.include ApiResponseHelper
     
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`

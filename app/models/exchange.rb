@@ -51,7 +51,7 @@ class Exchange < ApplicationRecord
                 old_logger = ActiveRecord::Base.logger
                 ActiveRecord::Base.logger = nil
                 unless index = indices.find_by(name: 'Unknown')
-                    index = indices.create(name: 'Unknown')
+                    index = indices.create(name: 'Unknown', symbol: 'UNK')
                 end
                 ActiveRecord::Base.logger = old_logger
                 stk[:exchange] = self

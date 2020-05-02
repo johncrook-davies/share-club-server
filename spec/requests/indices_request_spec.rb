@@ -6,6 +6,8 @@ RSpec.describe "Indices", type: :request do
     
     before do
         ind.save
+        # Stub methods in module AlphaVantage
+        allow_any_instance_of(Index).to receive(:get_index_price).with(anything()) { returned_get_index_price }
     end
 
     describe 'GET show' do
@@ -19,7 +21,7 @@ RSpec.describe "Indices", type: :request do
             expect(response.content_type).to eq("application/json; charset=utf-8")
         end
         it "responds with object" do
-            expect(response.body_parts[0]).to include(ind.to_json)
+            expect(JSON.parse(response.body_parts[0])).to include(ind.attributes.slice('id', 'symbol'))
         end
     end
     
@@ -34,7 +36,7 @@ RSpec.describe "Indices", type: :request do
             expect(response.content_type).to eq("application/json; charset=utf-8")
         end
         it "responds with object" do
-            expect(response.body_parts[0]).to include(ind.to_json)
+            expect(JSON.parse(response.body_parts[0])[0]).to include(ind.attributes.slice('id', 'symbol'))
         end
     end
 

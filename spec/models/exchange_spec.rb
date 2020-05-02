@@ -7,6 +7,12 @@ RSpec.describe Exchange, type: :model do
     before do
         # Stub methods in module Iex
         allow(ex).to receive(:get_stocks).with(anything()) { returned_get_stocks }
+        # Stub methods in module AlphaVantage
+        allow_any_instance_of(Index).to receive(:get_index_price).with(anything()) { returned_get_index_price }
+    end
+    
+    after do
+        Stock.destroy_all
     end
     
     it "creates for valid input" do

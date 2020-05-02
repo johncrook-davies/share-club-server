@@ -14,4 +14,10 @@ module ApiResponseHelper
     def returned_get_info_for
         return {"symbol"=>"AAPL", "companyName"=>"Apple, Inc.", "primaryExchange"=>"ADASQN", "calculationPrice"=>"close", "open"=>254.6, "openTime"=>1628354947613, "openSource"=>"ilcfioaf", "close"=>247.8, "closeTime"=>1635367428478, "closeSource"=>"fifiocla", "high"=>250.1, "highTime"=>1596444383192, "highSource"=>"aderpyi ime leeucn5 dt1", "low"=>241.318, "lowTime"=>1622485606677, "lowSource"=>"tc ar uei ddeyn5peeli1m", "latestPrice"=>252.56, "latestSource"=>"Close", "latestTime"=>"April 3, 2020", "latestUpdate"=>1599939147155, "latestVolume"=>32920518, "iexRealtimePrice"=>nil, "iexRealtimeSize"=>nil, "iexLastUpdated"=>nil, "delayedPrice"=>252.53, "delayedPriceTime"=>1605968670781, "oddLotDelayedPrice"=>245.33, "oddLotDelayedPriceTime"=>1643772220943, "extendedPrice"=>252.74, "extendedChange"=>-0.32, "extendedChangePercent"=>-0.00134, "extendedPriceTime"=>1649779050501, "previousClose"=>248.09, "previousVolume"=>43409401, "change"=>-3.62, "changePercent"=>-0.01444, "volume"=>32483424, "iexMarketPercent"=>nil, "iexVolume"=>nil, "avgTotalVolume"=>70901922, "iexBidPrice"=>nil, "iexBidSize"=>nil, "iexAskPrice"=>nil, "iexAskSize"=>nil, "iexOpen"=>nil, "iexOpenTime"=>nil, "iexClose"=>249.51, "iexCloseTime"=>1612208589229, "marketCap"=>1088632673523, "peRatio"=>19.2, "week52High"=>332.32, "week52Low"=>173.54, "ytdChange"=>-0.2003038384816149, "lastTradeTime"=>1621398128721, "isUSMarketOpen"=>false}.to_json
     end
+    
+    def returned_get_index_price
+        return {
+            latest_price: "5763.1001"
+        }
+    end
 end
