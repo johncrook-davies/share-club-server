@@ -2,6 +2,7 @@ require 'updater'
 class Stock < ApplicationRecord
     include Iex
     belongs_to :exchange
+    has_and_belongs_to_many :indices
     after_commit :broadcast
     
     def init

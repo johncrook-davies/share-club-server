@@ -4,7 +4,10 @@ RSpec.describe Stock, type: :model do
     
     let(:stock_one) { build(:stock) }
     let(:stock_two) { build(:stock) }
-    let(:test_data) { JSON.parse(returned_get_info_for) }
+    let(:stock_with_indices) { create(:stock_with_indices) }
+    let(:test_data) {
+        JSON.parse(returned_get_info_for) 
+    }
     
     before do
         stock_one.save
@@ -17,9 +20,10 @@ RSpec.describe Stock, type: :model do
         expect(Stock.find_by(id: stock_one.id)).to be
     end
     
-    it "is accessible via exchange" do
-        ex = Exchange.find stock_one.exchange_id
-        expect(ex.stocks).to contain_exactly(stock_one)
+    it "can access indices" do
+        expect(
+            Stock.find_by(id: stock_with_indices.id).indices.length
+        ).to eql(5)
     end
     
     it "has method to update market data" do

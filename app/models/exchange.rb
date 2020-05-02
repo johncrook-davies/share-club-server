@@ -1,6 +1,7 @@
 class Exchange < ApplicationRecord
     include Iex
-    has_many :stocks
+    has_many :indices
+    has_many :stocks, through: :indices
     
     def init
         # Initialisation methods
