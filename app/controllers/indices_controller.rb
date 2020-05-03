@@ -4,7 +4,7 @@ class IndicesController < ApplicationController
         # Returns single index
         
         if ind = Index.find_by(symbol: index_params[:id])
-            render json: ind
+            render json: ind.stocks
         else
             raise ActionController::RoutingError.new('Not Found')
         end

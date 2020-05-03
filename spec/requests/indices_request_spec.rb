@@ -20,8 +20,8 @@ RSpec.describe "Indices", type: :request do
         it "returns a json" do
             expect(response.content_type).to eq("application/json; charset=utf-8")
         end
-        it "responds with object" do
-            expect(JSON.parse(response.body_parts[0])).to include(ind.attributes.slice('id', 'symbol'))
+        it "responds with constituent stocks" do
+            expect(JSON.parse(response.body_parts[0])).to eq(ind.stocks.to_a)
         end
     end
     

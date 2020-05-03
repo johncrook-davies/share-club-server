@@ -47,7 +47,7 @@ class Stock < ApplicationRecord
     # Private instance methods
     private
         def broadcast
-            ActionCable.server.broadcast "stocks:#{self.symbol}", stock: self
+            ActionCable.server.broadcast "stocks:#{symbol}", stock: self
         end
         
 end
