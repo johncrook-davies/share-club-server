@@ -9,6 +9,7 @@ gem 'bootsnap',                 '>= 1.4.2', require: false
 gem 'pg',                       '~> 0.18.4'
 gem 'whenever',                 '~> 1.0.0'
 gem 'redis',                    '~> 4.1.3'
+gem "aws-sdk-s3",               require: false
 
 group :development, :test do
     gem 'byebug',               platforms: [:mri, :mingw, :x64_mingw]
