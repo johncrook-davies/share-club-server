@@ -11,8 +11,12 @@ class Index < ApplicationRecord
     
     def get_latest_info()
         # GET request to market data server
-        payload = get_index_price(name: '^'+symbol, mapping: mapping)
-        return update(payload)
+        begin
+            payload = get_index_price(name: '^'+symbol, mapping: mapping)
+            return update(payload)
+        rescue
+            return self
+        end
     end
     
     private
